@@ -1,5 +1,6 @@
 - name: Configure web servers
   hosts: all
+  become: yes
   tasks:
 
     - name: Install nginx
@@ -14,7 +15,7 @@
         mode: '0755'
     - name: copy nginx conf file to server
       ansible.builtin.copy:
-        src: /files/nginx.conf
+        src: ./files/nginx.conf
         dest: /etc/nginx/sites-available/default/nginx.conf
 
     - name: create link to nginx config file to enable it
